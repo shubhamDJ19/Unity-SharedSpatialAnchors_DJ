@@ -11,7 +11,7 @@ public class PrefabHandler : PhotonPun.MonoBehaviourPunCallbacks
     private Transform spawnPoint;
 
     [SerializeField]
-    private GameObject prefab;
+    private GameObject heroObject;
 
 
     [SerializeField]
@@ -32,7 +32,10 @@ public class PrefabHandler : PhotonPun.MonoBehaviourPunCallbacks
 
     private void SpawnPrefab()
     {
-        var networkedCube = PhotonPun.PhotonNetwork.Instantiate(prefab.name, spawnPoint.position, Quaternion.identity);
+        heroObject.transform.position = spawnPoint.position;
+        heroObject.transform.rotation = Quaternion.identity;
+        heroObject.SetActive(true);
+        //var networkedCube = PhotonPun.PhotonNetwork.Instantiate(prefab.name, spawnPoint.position, Quaternion.identity);
         //var photonGrabbable = networkedCube.GetComponent<PhotonGrabbableObject>();
         //photonGrabbable.TransferOwnershipToLocalPlayer();
     }
