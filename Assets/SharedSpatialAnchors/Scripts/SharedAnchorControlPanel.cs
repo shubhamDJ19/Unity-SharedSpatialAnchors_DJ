@@ -68,6 +68,9 @@ public class SharedAnchorControlPanel : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI roomText;
 
+    [SerializeField]
+    private GameObject rootcanvas;
+
     List<GameObject> lobbyRowList = new List<GameObject>();
 
     public TextMeshProUGUI RoomText
@@ -100,6 +103,9 @@ public class SharedAnchorControlPanel : MonoBehaviour
     private void Update()
     {
         statusText.text = "Status: " + PhotonPun.PhotonNetwork.NetworkClientState;
+        if (OVRInput.GetDown(OVRInput.Button.Four)) {
+            rootcanvas.SetActive(!rootcanvas.activeSelf);
+        }
     }
 
     public void OnCreateModeButtonPressed()

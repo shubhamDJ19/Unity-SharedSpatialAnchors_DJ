@@ -8,6 +8,7 @@ using PhotonRealtime = Photon.Realtime;
 
 public enum ENVSTATE
 {
+    None,
     NOTVISIBLE,
     VISIBLE
 }
@@ -17,15 +18,21 @@ public class ObjectController : PhotonPun.MonoBehaviourPunCallbacks, IPunObserva
     [SerializeField]
     private GameObject envVisuals;
     [SerializeField]
-    private ENVSTATE currentEnvState;
+    private ENVSTATE currentEnvState = ENVSTATE.NOTVISIBLE;
 
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private List<GameObject> envVisibleObject;
+    [SerializeField]
+    private List<GameObject> envNotVisibleObject;
+
+
     //[SerializeField]
     //public static UnityEvent<bool> OnEnvVisiblityToggle;
 
-    private ENVSTATE lastEnvState;
+    private ENVSTATE lastEnvState = ENVSTATE.None;
 
     OVRManager oVRManager;
     Camera middleCamera;
@@ -49,6 +56,20 @@ public class ObjectController : PhotonPun.MonoBehaviourPunCallbacks, IPunObserva
         }
     }
 
+    private void ToggleEnvObjects(bool envVisible)
+    {
+        Debug.Log("ToggleEnvObjects " + envVisible);
+        foreach (GameObject obj in envVisibleObject)
+        {
+            obj.SetActive(envVisible);
+        }
+
+        foreach (GameObject obj in envNotVisibleObject)
+        {
+            obj.SetActive(!envVisible);
+        }
+    }
+
     private void HandleStateUpdate()
     {
         switch (currentEnvState)
@@ -57,11 +78,13 @@ public class ObjectController : PhotonPun.MonoBehaviourPunCallbacks, IPunObserva
                 envVisuals.SetActive(false);
                 //OnEnvVisiblityToggle.Invoke(false);
                 ChangePassthrough(true);
+                ToggleEnvObjects(false);
                 break;
             case ENVSTATE.VISIBLE:
                 envVisuals.SetActive(true);
                 //OnEnvVisiblityToggle.Invoke(true);
                 ChangePassthrough(false);
+                ToggleEnvObjects(true);
                 break;
         }
     }
