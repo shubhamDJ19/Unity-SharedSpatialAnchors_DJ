@@ -113,6 +113,7 @@ public class SampleController : MonoBehaviour
     {
         Log("PlaceAnchorAtRoot: root: " + placementRoot.ToOVRPose().ToPosef());
 
+        //colocationAnchor = Instantiate(anchorPrefab, Vector3.zero, Quaternion.identity).GetComponent<SharedAnchor>();
         colocationAnchor = Instantiate(anchorPrefab, placementRoot.position, placementRoot.rotation).GetComponent<SharedAnchor>();
 
         if (automaticCoLocation)

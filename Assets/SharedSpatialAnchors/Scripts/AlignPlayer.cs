@@ -37,6 +37,10 @@ public class AlignPlayer : MonoBehaviour
     private CachedSharedAnchor _currentCachedAlignmentAnchor;
     private Coroutine _realignCoroutine;
 
+    public SharedAnchor GetCurrentAlignmentAnchor() {
+        return _currentAlignmentAnchor;
+    }
+
     private void Awake()
     {
         if (Instance == null)
