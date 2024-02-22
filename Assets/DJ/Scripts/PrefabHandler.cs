@@ -28,6 +28,9 @@ public class PrefabHandler : PhotonPun.MonoBehaviourPunCallbacks
         spawnPoint = anchor.transform;
         if (PhotonPun.PhotonNetwork.IsMasterClient)
             SpawnPrefab();
+        else {
+            heroObject.SetActive(true);
+        }
     }
 
     private void SpawnPrefab()
@@ -35,8 +38,15 @@ public class PrefabHandler : PhotonPun.MonoBehaviourPunCallbacks
         heroObject.transform.position = spawnPoint.position;
         heroObject.transform.rotation = Quaternion.identity;
         heroObject.SetActive(true);
+        photonView.RPC(nameof(EnableModelRpc), PhotonPun.RpcTarget.Others);
         //var networkedCube = PhotonPun.PhotonNetwork.Instantiate(prefab.name, spawnPoint.position, Quaternion.identity);
         //var photonGrabbable = networkedCube.GetComponent<PhotonGrabbableObject>();
         //photonGrabbable.TransferOwnershipToLocalPlayer();
+    }
+
+    [PhotonPun.PunRPC]
+    public void EnableModelRpc()
+    {
+        heroObject.SetActive(true);
     }
 }
