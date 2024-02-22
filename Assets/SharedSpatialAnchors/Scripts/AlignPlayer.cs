@@ -101,7 +101,7 @@ public class AlignPlayer : MonoBehaviour
         if(anchor)
             _realignCoroutine = StartCoroutine(RealignRoutine(anchor));
     }
-
+    
     private IEnumerator RealignRoutine(SharedAnchor anchor)
     {
         if (_currentAlignmentAnchor != null)
