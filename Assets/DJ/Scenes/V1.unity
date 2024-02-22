@@ -883,9 +883,9 @@ MonoBehaviour:
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
   m_SynchronizeParameters:
-  - Type: 9
+  - Type: 4
     SynchronizeType: 2
-    Name: anim
+    Name: open
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -1483,7 +1483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1725886557285886439, guid: abc9909b38f1edc4a92d77a1f7556c8d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1758878092802164839, guid: abc9909b38f1edc4a92d77a1f7556c8d, type: 3}
       propertyPath: m_StaticEditorFlags

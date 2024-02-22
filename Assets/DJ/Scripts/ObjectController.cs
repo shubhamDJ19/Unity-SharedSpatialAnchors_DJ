@@ -119,9 +119,11 @@ public class ObjectController : PhotonPun.MonoBehaviourPunCallbacks, IPunObserva
             SampleController.Instance.Log($"Button one pressed form RHand {currentEnvState}");
         }
 
-        if (OVRInput.GetUp(OVRInput.Button.Two, OVRInput.Controller.RHand))
+        if (OVRInput.GetUp(OVRInput.Button.Two))
         {
-            animator.SetTrigger("anim");
+            SampleController.Instance.Log($"OVRInput.Button.Two RHand {currentEnvState}");
+            bool currentOpenVal = animator.GetBool("open");
+            animator.SetBool("open",!currentOpenVal);
         }
 
 
